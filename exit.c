@@ -1,4 +1,4 @@
-#include "simple_shell.h" // Include your header file
+#include "shell.h" // Include your header file
 
 #define BUFFER_SIZE 1024
 
