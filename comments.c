@@ -1,4 +1,4 @@
-#include "shell.h" // Include your existing header file
+#include "shell.h"
 
 void recognise_comments(FILE *file) {
     char c;
@@ -7,7 +7,7 @@ void recognise_comments(FILE *file) {
 
     while ((c = fgetc(file)) != EOF) {
         if (in_single_line_comment) {
-            // If we're inside a single-line comment, print until the end of the line
+          
             if (c == '\n') {
                 in_single_line_comment = 0;
                 printf("\n");
@@ -15,7 +15,7 @@ void recognise_comments(FILE *file) {
                 putchar(c);
             }
         } else if (in_multi_line_comment) {
-            // If we're inside a multi-line comment, print until we find the closing */
+            /* If we're inside a multi-line comment, print until we find the closing */
             if (c == '*' && (c = fgetc(file)) == '/') {
                 in_multi_line_comment = 0;
                 printf("*/\n");
@@ -23,7 +23,7 @@ void recognise_comments(FILE *file) {
                 putchar(c);
             }
         } else {
-            // Not in a comment, look for the start of a comment
+            /* Not in a comment, look for the start of a comment*/
             if (c == '/') {
                 char next = fgetc(file);
                 if (next == '/') {
@@ -33,7 +33,7 @@ void recognise_comments(FILE *file) {
                     in_multi_line_comment = 1;
                     printf("/*");
                 } else {
-                    // Not a comment, just print the characters
+                    /* Not a comment, just print the characters*/
                     putchar(c);
                     putchar(next);
                 }

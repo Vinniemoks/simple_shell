@@ -1,4 +1,4 @@
-#include "shell.h" // Include your header file
+#include "shell.h"
 
 #define BUFFER_SIZE 1024
 
@@ -19,12 +19,12 @@ void excute_command(char **args, char **envp) {
         return;
     }
 
-    if (pid == 0) { // Child process
+    if (pid == 0) {
         if (execvp(args[0], args) == -1) {
             perror("Error executing command");
         }
         exit(EXIT_FAILURE);
-    } else { // Parent process
+    } else {
         wait(NULL);
     }
 }
@@ -38,7 +38,7 @@ void parse_command(char *command, char **args) {
         args[i++] = token;
         token = strtok(NULL, " \n");
     }
-    args[i] = NULL; // Null-terminate the array of arguments
+    args[i] = NULL;
 }
 
 void print_env(char **envp) {

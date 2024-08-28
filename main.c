@@ -11,10 +11,10 @@ void execute_command(char *command) {
         return;
     }
 
-    // Remove newline character from the command
+    /* Remove newline character from the command*/
     command[strcspn(command, "\n")] = '\0';
 
-    // Fork a child process
+    /* Fork a child process*/
     pid_t pid = fork();
 
     if (pid < 0) {
@@ -22,14 +22,12 @@ void execute_command(char *command) {
         return;
     }
 
-    if (pid == 0) { // Child process
-        // Execute the command
+    if (pid == 0) { 
         if (execlp(command, command, NULL) == -1) {
             perror("Error executing command");
         }
         exit(EXIT_FAILURE);
-    } else { // Parent process
-        // Wait for the child process to complete
+    } else {
         wait(NULL);
     }
 }
