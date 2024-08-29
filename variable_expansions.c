@@ -13,7 +13,7 @@ void variable_expansion(data_of_program *data)
 
 	if (data->input_line == NULL)
 		return;
-	buffer_add(line, data->input_line);
+	buffer_addition(line, data->input_line);
 	for (i = 0; line[i]; i++)
 		if (line[i] == '#')
 			line[i--] = '\0';
@@ -21,15 +21,15 @@ void variable_expansion(data_of_program *data)
 		{
 			line[i] = '\0';
 			long_to_string(errno, expansion, 10);
-			buffer_add(line, expansion);
-			buffer_add(line, data->input_line + i + 2);
+			buffer_addition(line, expansion);
+			buffer_addition(line, data->input_line + i + 2);
 		}
 		else if (line[i] == '$' && line[i + 1] == '$')
 		{
 			line[i] = '\0';
 			long_to_string(getpid(), expansion, 10);
-			buffer_add(line, expansion);
-			buffer_add(line, data->input_line + i + 2);
+			buffer_addition(line, expansion);
+			buffer_addition(line, data->input_line + i + 2);
 		}
 		else if (line[i] == '$' && (line[i + 1] == ' ' || line[i + 1] == '\0'))
 			continue;
@@ -39,9 +39,9 @@ void variable_expansion(data_of_program *data)
 				expansion[j - 1] = line[i + j];
 			temp = env_get_key(expansion, data);
 			line[i] = '\0', expansion[0] = '\0';
-			buffer_add(expansion, line + i + j);
-			temp ? buffer_add(line, temp) : 1;
-			buffer_add(line, expansion);
+			buffer_addition(expansion, line + i + j);
+			temp ? buffer_addition(line, temp) : 1;
+			buffer_addition(line, expansion);
 		}
 	if (!str_compare(data->input_line, line, 0))
 	{
@@ -64,7 +64,7 @@ void alias_expansion(data_of_program *data)
 	if (data->input_line == NULL)
 		return;
 
-	buffer_add(line, data->input_line);
+	buffer_addition(line, data->input_line);
 
 	for (i = 0; line[i]; i++)
 	{
@@ -76,11 +76,11 @@ void alias_expansion(data_of_program *data)
 		if (temp)
 		{
 			expansion[0] = '\0';
-			buffer_add(expansion, line + i + j);
+			buffer_addition(expansion, line + i + j);
 			line[i] = '\0';
-			buffer_add(line, temp);
+			buffer_addition(line, temp);
 			line[str_length(line)] = '\0';
-			buffer_add(line, expansion);
+			buffer_addition(line, expansion);
 			was_expanded = 1;
 		}
 		break;

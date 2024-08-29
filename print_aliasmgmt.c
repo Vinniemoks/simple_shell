@@ -102,8 +102,8 @@ int set_alias(char *alias_string, data_of_program *data)
 	/* add the alias */
 	if (temp)
 	{/* if the alias already exist */
-		buffer_add(buffer, "=");
-		buffer_add(buffer, temp);
+		buffer_addition(buffer, "=");
+		buffer_addition(buffer, temp);
 		data->alias_list[j] = str_duplicate(buffer);
 	}
 	else /* if the alias does not exist */
