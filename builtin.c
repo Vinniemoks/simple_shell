@@ -5,7 +5,7 @@
  * @data: struct for the program's data
  * Return: zero if sucess, or other number if its declared in the arguments
  */
-int builtin(data_of_program *data)
+int builtin_env(data_of_program *data)
 {
 	int i;
 	char cpname[50] = {'\0'};
