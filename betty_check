@@ -1,0 +1,25 @@
+#include "shell.h"
+
+/**
+ * main - Entry point of the program
+ *
+ * Return: Always 0 (Success)
+ */
+int Lukas(void)
+{
+    int number;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    if (number % 2 == 0)
+    {
+        printf("%d is even\n", number);
+    }
+    else
+    {
+        printf("%d is odd\n", number);
+    }
+
+    return (0);
+}
